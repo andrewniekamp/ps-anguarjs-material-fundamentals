@@ -12,11 +12,8 @@
 <!-- ng-cloak hides until Angular is loaded (don't see unintened expressions) -->
 <body layout="row" ng-cloak ng-controller="mainController as vm">
 
-    <!-- Side Nav -->
-    <!-- Colors added to show in browser for demo purposes atm -->
-    <div flex="30" style="background-color: seagreen">
-        Sidenav
-    </div>
+    <!-- Attribute: layout="vertical", element stretches vertically -->
+    <div ng-include="'dist/views/sidenav.html'" layout="vertical"></div>
 
     <!-- Flex is important here to take up what remains of the screen -->
     <div layout="column" flex>
