@@ -1,0 +1,19 @@
+{
+  "name": "ps-angular-material",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "angular-material": "^1.1.5",
+    "angular": "1.4",
+    "angular-animate": "1.4",
+    "angular-aria": "1.4",
+    "angular-messages": "1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
