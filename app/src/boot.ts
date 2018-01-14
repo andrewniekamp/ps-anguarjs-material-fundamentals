@@ -2,5 +2,6 @@
 
 module ContactManagerApp { // Not the app name, just for scoping purposes
     angular.module('contactManagerApp', ['ngMaterial'])
-        .controller('mainController', MainController); // TypeScript class
+        .service('userService', UserService)
+        .controller('mainController', MainController);
 }
