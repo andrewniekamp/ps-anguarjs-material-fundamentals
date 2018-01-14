@@ -9,15 +9,17 @@
     <link rel="stylesheet" href="./assets/app.css" />
     <title>Document</title>
 </head>
-<body>
+<!-- ng-cloak hides until Angular is loaded (don't see unintened expressions) -->
+<body ng-cloak ng-controller="mainController as vm">
     <h1>Hello</h1>
-    <p>{{ 2 + 2 }}</p>
+    <p>{{ vm.message }}</p>
     
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
     <script src="../node_modules/angular-aria/angular-aria.js"></script>
     <script src="../node_modules/angular-material/angular-material.js"></script>
 
+    <script src="./dist/controllers/MainController.js"></script>
     <script src="./dist/boot.js"></script>
 </body>
 </html>

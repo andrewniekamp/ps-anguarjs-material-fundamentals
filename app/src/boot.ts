@@ -1,5 +1,6 @@
 /// <reference path="_all.ts" />
 
 module ContactManagerApp { // Not the app name, just for scoping purposes
-    angular.module('contactManagerApp', ['ngMaterial']);
+    angular.module('contactManagerApp', ['ngMaterial'])
+        .controller('mainController', MainController); // TypeScript class
 }
