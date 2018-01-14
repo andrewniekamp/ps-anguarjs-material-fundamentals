@@ -10,9 +10,33 @@
     <title>Document</title>
 </head>
 <!-- ng-cloak hides until Angular is loaded (don't see unintened expressions) -->
-<body ng-cloak ng-controller="mainController as vm">
-    <h1>Hello</h1>
-    <p>{{ vm.message }}</p>
+<body layout="row" ng-cloak ng-controller="mainController as vm">
+
+    <!-- Side Nav -->
+    <!-- Colors added to show in browser for demo purposes atm -->
+    <div flex="30" style="background-color: seagreen">
+        Sidenav
+    </div>
+
+    <!-- Flex is important here to take up what remains of the screen -->
+    <div layout="column" flex>
+        <div style="background-color: steelblue">Toolbar</div>
+        <md-content flex>
+            Main Content
+        </md-content>
+    </div>
+
+    <!-- Sample Code -->
+    <!-- <div layout="row" layout-xs="column">
+        <div layout="row" flex="30">
+            <div flex style="background-color: steelblue">First item in row</div>
+            <div flex style="background-color: seagreen">Second item in row</div>
+        </div>
+        <div layout="column" flex>
+            <div flex style="background-color: steelblue">First item in row</div>
+            <div flex style="background-color: seagreen">Second item in row</div>
+        </div>
+    </div> -->
     
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
