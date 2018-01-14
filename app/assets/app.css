@@ -11,3 +11,8 @@ md-toolbar h1 {
     font-weight: 400;
     margin: auto;
 }
+
+md-toolbar .md-toolbar-tools h1 {
+    font-size: 1.25em;
+    font-weight: 400;
+}
