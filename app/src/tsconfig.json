@@ -1,0 +1,7 @@
+{
+    "compilerOptions": { // We made this file
+        "target": "es5", // Transpile to es5
+        "sourceMap": true, // To debug
+        "outDir": "../dist/" // Output location
+    }
+}
