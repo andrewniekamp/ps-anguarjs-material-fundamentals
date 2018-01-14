@@ -1,7 +1,8 @@
 <md-toolbar class="md-hue-2">
     <div class="md-toolbar-tools">
         <md-button hide-gt-sm ng-click="vm.toggleSideNav()" class="md-icon-button">
-            Toggle
+            <!-- Remember, icon path is relative to index.html, not this file -->
+            <md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
         </md-button>
         <h1 flex md-truncate>
             Toolbar with Disabled/Enabled Icon Buttons
