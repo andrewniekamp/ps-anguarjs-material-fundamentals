@@ -21,6 +21,8 @@ module ContactManagerApp {
                 })
         }
 
+        tabIndex: number = 0;
+        searchText: string = '';
         users: User[] = [];
         selectedUser: User = null;
         message: string = 'Hello from our controller'; // Accessible from template with vm.message (using controllerAs vm)
@@ -36,6 +38,7 @@ module ContactManagerApp {
             if (sideNav.isOpen()) {
                 sideNav.close();
             }
+            this.tabIndex = 0;
         }
     }
 }
