@@ -16,14 +16,26 @@ module ContactManagerApp {
                 .loadAllUsers()
                 .then( (users: User[]) => {
                     vm.users = users;
+                    vm.selectedUser = users[0]; // Select first by default
                     console.log(vm.users);
                 })
         }
 
+        users: User[] = [];
+        selectedUser: User = null;
         message: string = 'Hello from our controller'; // Accessible from template with vm.message (using controllerAs vm)
 
         toggleSideNav() : void {
             this.$mdSidenav('left').toggle();
+        }
+
+        selectUser(user: User) : void {
+            this.selectedUser = user; // Assign selected user
+
+            var sideNav = this.$mdSidenav('left');
+            if (sideNav.isOpen()) {
+                sideNav.close();
+            }
         }
     }
 }

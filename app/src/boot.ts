@@ -7,6 +7,7 @@ module ContactManagerApp { // Not the app name, just for scoping purposes
         .config((   $mdIconProvider: angular.material.IIconProvider,
                     $mdThemingProvider: angular.material.IThemingProvider) => {
             $mdIconProvider
+                .defaultIconSet('./assets/svg/avatars.svg', 128)
                 .icon('menu', './assets/svg/menu.svg', 24);
 
             $mdThemingProvider.theme('default')
