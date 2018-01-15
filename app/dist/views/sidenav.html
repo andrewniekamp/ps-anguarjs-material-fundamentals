@@ -6,9 +6,34 @@
     <md-toolbar>
         <h1>Contacts</h1>
     </md-toolbar>
+
+    <div layout-padding>
+        <!-- Bind search text to property on view
+        Items to present in dropdown are md-items
+        Item text to display is item.name
+        min 3 chars before autocompleting
+        placeholder to user is filter-->
+        <md-autocomplete
+            md-search-text="vm.searchText"
+            md-items="item in vm.users | filter:vm.searchText"
+            md-item-text="item.name"
+            md-min-length="3"
+            placeholder="Filter by Name">
+            <!-- Need to specify md-item template to show how each item should look when displayed -->
+            <md-item-template>
+                <!-- Highlights as the user types -->
+                <span md-highlight-text="vm.searchText" md-highlight-flags="^i">{{item.name}}</span>
+            </md-item-template>
+            <md-not-found>
+                No user matching "{{vm.searchText}}" was found.
+            </md-not-found>
+        </md-autocomplete>
+    </div>
+
     <md-content>
         <md-list>
-            <md-list-item ng-repeat="user in vm.users | orderBy:'name'">
+            <!-- Add another pipe to filter by search criteria first, then still order by name! -->
+            <md-list-item ng-repeat="user in vm.users | filter: vm.searchText | orderBy:'name'">
                 <md-button ng-click="vm.selectUser(user)" ng-class="{'selected': user === vm.selectedUser}">
                     <!-- user.avatar is an svg ID reference -->
                     <md-icon md-svg-icon="{{user.avatar}}" class="avatar"></md-icon>
