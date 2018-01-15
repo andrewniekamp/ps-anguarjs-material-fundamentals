@@ -105,8 +105,18 @@ module ContactManagerApp {
                 });
         }
 
+        formScope: any;
+
+        setFormScope(scope) {
+            this.formScope = scope;
+        }
+
         addNote() {
             this.selectedUser.notes.push(this.newNote);
+            // Need to reset the form
+            this.formScope.noteForm.$setUntouched();
+            this.formScope.noteForm.$setPristine();
+            
             this.newNote = new Note('', null); // Clears out form
             this.openToast("Note added!");
         }

@@ -5,24 +5,36 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Avatar</label>
-                        <md-select ng-model="vm.user.avatar" name="avatar">
+                        <md-select ng-model="vm.user.avatar" name="avatar" required>
                             <md-option ng-repeat="avatar in vm.avatars" ng-value="avatar">
                                 <md-icon md-svg-icon="{{avatar}}"></md-icon>
                             </md-option>
                         </md-select>
+                        <div ng-messages="userForm.avatar.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>First Name</label>
-                        <input ng-model="vm.user.firstName" name="firstName">
+                        <input ng-model="vm.user.firstName" name="firstName" required>
+                        <div ng-messages="userForm.avatar.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
                     </md-input-container>
                     <md-input-container class="md-block" flex-gt-sm>
                         <label>Last Name</label>
-                        <input ng-model="vm.user.lastName" name="lastName">
+                        <input ng-model="vm.user.lastName" name="lastName" required>
+                        <div ng-messages="userForm.avatar.$error">
+                            <div ng-message="required">This is required.</div>
+                        </div>
                     </md-input-container>
                 </div>
                 <md-input-container class="md-block" flex>
                     <label>Biography</label>
-                    <textarea ng-model="vm.user.bio" rows="5" name="bio"></textarea>
+                    <textarea ng-model="vm.user.bio" rows="5" name="bio" required></textarea>
+                    <div ng-messages="userForm.avatar.$error">
+                        <div ng-message="required">This is required.</div>
+                    </div>
                 </md-input-container>
             </div>
         </md-dialog-content>
@@ -31,7 +43,10 @@
             <md-button ng-click="vm.cancel()">
                 Cancel
             </md-button>
-            <md-button type="submit" class="md-primary md-raised">
+            <md-button
+                type="submit"
+                class="md-primary md-raised"
+                ng-disabled="userForm.$invalid">
                 Save
             </md-button>
         </md-dialog-actions>
