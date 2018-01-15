@@ -1,7 +1,30 @@
 <md-dialog>
     <form name="userForm" ng-submit="vm.save()">
         <md-dialog-content>
-            Content
+            <div layout="column" layout-padding>
+                <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Avatar</label>
+                        <md-select ng-model="vm.user.avatar" name="avatar">
+                            <md-option ng-repeat="avatar in vm.avatars" ng-value="avatar">
+                                <md-icon md-svg-icon="{{avatar}}"></md-icon>
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>First Name</label>
+                        <input ng-model="vm.user.firstName" name="firstName">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                        <label>Last Name</label>
+                        <input ng-model="vm.user.lastName" name="lastName">
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block" flex>
+                    <label>Biography</label>
+                    <textarea ng-model="vm.user.bio" rows="5" name="bio"></textarea>
+                </md-input-container>
+            </div>
         </md-dialog-content>
 
         <md-dialog-actions layout="row">

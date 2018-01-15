@@ -2,6 +2,16 @@
 
 module ContactManagerApp {
 
+    export class CreateUser {
+        constructor(
+            public firstName: string,
+            public lastName: string,
+            public avatar: string,
+            public bio: string) {
+
+        }
+    }
+
     export class User {
         constructor(
             public name: string,
@@ -10,6 +20,14 @@ module ContactManagerApp {
             public notes: Note[]) {
 
         }
+        static fromCreate(user: CreateUser) : User {
+            return new User(
+                user.firstName + ' ' + user.lastName,
+                user.avatar,
+                user.bio,
+                []
+            );
+        }
     }
 
     export class Note {
@@ -17,7 +35,7 @@ module ContactManagerApp {
             public title: string,
             public date: Date) {
 
-            }
+        }
     }
-    
+
 }

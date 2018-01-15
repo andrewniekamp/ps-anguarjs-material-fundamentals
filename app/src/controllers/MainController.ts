@@ -79,7 +79,10 @@ module ContactManagerApp {
                 controller: AddUserDialogController,
                 clickOutsideToClose: true,
                 fullscreen: useFullScreen, // Resolved to boolean
-            }).then( (user: User) => {
+            }).then( (user: CreateUser) => {
+                var newUser: User = User.fromCreate(user);
+                stillThis.users.push(newUser);
+                stillThis.selectedUser = newUser;
                 stillThis.openToast('User added');
             }, () => {
                 console.log('You cancelled the dialog.')
