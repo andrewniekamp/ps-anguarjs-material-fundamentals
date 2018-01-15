@@ -3,7 +3,7 @@
 module ContactManagerApp {
     export class MainController {
         // Avoids issues with minification. In app, we will use a library for this
-        static $inject = ['userService', '$mdSidenav', '$mdToast', '$mdDialog']; 
+        static $inject = ['userService', '$mdSidenav', '$mdToast', '$mdDialog', '$mdMedia']; 
 
         // Using controllerAs directive (in html tag) to avoid using $scope
 
@@ -11,7 +11,9 @@ module ContactManagerApp {
             private userService: IUserService
             private $mdSidenav: angular.material.ISidenavService,
             private $mdToast: angular.material.IToastService
-            private $mdDialog: angular.material.IDialogService) { // Has interface! Takes component name (id specified in tag)
+            private $mdDialog: angular.material.IDialogService
+            private $mdMedia: angular.material.IMedia,
+        ) { // Has interface! Takes component name (id specified in tag)
             var vm = this;
 
             vm.userService
@@ -41,6 +43,25 @@ module ContactManagerApp {
                 sideNav.close();
             }
             this.tabIndex = 0;
+        }
+
+        addUser($event) {
+            var stillThis = this;
+            var useFullScreen = (this.$mdMedia('sm') || this.$mdMedia('xs'));
+
+            this.$mdDialog.show({ // Options
+                templateUrl: './dist/views/new-user-dialog.html',
+                parent: angular.element(document.body),
+                targetEvent: $event,
+                controllerAs: 'vm',
+                controller: AddUserDialogController,
+                clickOutsideToClose: true,
+                fullscreen: useFullScreen, // Resolved to boolean
+            }).then( (user: User) => {
+                stillThis.openToast('User added');
+            }, () => {
+                console.log('You cancelled the dialog.')
+            });
         }
 
         clearNotes($event) {
