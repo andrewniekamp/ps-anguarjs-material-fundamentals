@@ -3,14 +3,15 @@
 module ContactManagerApp {
     export class MainController {
         // Avoids issues with minification. In app, we will use a library for this
-        static $inject = ['userService', '$mdSidenav', '$mdToast']; 
+        static $inject = ['userService', '$mdSidenav', '$mdToast', '$mdDialog']; 
 
         // Using controllerAs directive (in html tag) to avoid using $scope
 
         constructor(
             private userService: IUserService
             private $mdSidenav: angular.material.ISidenavService,
-            private $mdToast: angular.material.IToastService) { // Has interface! Takes component name (id specified in tag)
+            private $mdToast: angular.material.IToastService
+            private $mdDialog: angular.material.IDialogService) { // Has interface! Takes component name (id specified in tag)
             var vm = this;
 
             vm.userService
@@ -40,6 +41,22 @@ module ContactManagerApp {
                 sideNav.close();
             }
             this.tabIndex = 0;
+        }
+
+        clearNotes($event) {
+            var confirm = this.$mdDialog.confirm()
+                .title("Are you sure you want to delete all notes?")
+                .textContent("This action cannot be undone!")
+                .targetEvent($event)
+                .ok('Yes')
+                .cancel('No');
+
+            var stillThis = this;
+            this.$mdDialog.show(confirm)
+                .then(() => {
+                    stillThis.selectedUser.notes = [];
+                    stillThis.openToast('Cleared notes!')
+                });
         }
 
         removeNote(note: Note) : void {
