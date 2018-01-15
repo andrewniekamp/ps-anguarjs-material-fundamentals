@@ -36,7 +36,7 @@ module ContactManagerApp {
         searchText: string = '';
         users: User[] = [];
         selectedUser: User = null;
-        message: string = 'Hello from our controller'; // Accessible from template with vm.message (using controllerAs vm)
+        newNote: Note = new Note('', null);
 
         toggleSideNav() : void {
             this.$mdSidenav('left').toggle();
@@ -103,6 +103,12 @@ module ContactManagerApp {
                     stillThis.selectedUser.notes = [];
                     stillThis.openToast('Cleared notes!')
                 });
+        }
+
+        addNote() {
+            this.selectedUser.notes.push(this.newNote);
+            this.newNote = new Note('', null); // Clears out form
+            this.openToast("Note added!");
         }
 
         removeNote(note: Note) : void {
