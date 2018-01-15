@@ -3,13 +3,14 @@
 module ContactManagerApp {
     export class MainController {
         // Avoids issues with minification. In app, we will use a library for this
-        static $inject = ['userService', '$mdSidenav']; 
+        static $inject = ['userService', '$mdSidenav', '$mdToast']; 
 
         // Using controllerAs directive (in html tag) to avoid using $scope
 
         constructor(
             private userService: IUserService
-            private $mdSidenav: angular.material.ISidenavService) { // Has interface! Takes component name (id specified in tag)
+            private $mdSidenav: angular.material.ISidenavService,
+            private $mdToast: angular.material.IToastService) { // Has interface! Takes component name (id specified in tag)
             var vm = this;
 
             vm.userService
@@ -44,6 +45,17 @@ module ContactManagerApp {
         removeNote(note: Note) : void {
             var foundIndex = this.selectedUser.notes.indexOf(note);
             this.selectedUser.notes.splice(foundIndex, 1);
+            this.openToast('Note was removed!');
+        }
+
+        // Configure toast
+        openToast(message: string) : void {
+            this.$mdToast.show(
+                this.$mdToast.simple()
+                    .textContent(message)
+                    .position('top right')
+                    .hideDelay(3000)
+            );
         }
     }
 }
