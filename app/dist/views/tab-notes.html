@@ -1,1 +1,16 @@
-placeholder for notes
+<!-- First, check if user has any notes and display message, if not -->
+<p ng-if="!vm.selectedUser.notes.length">No notes for {{vm.selectedUser.name}} yet.</p>
+
+<!-- If they do have notes, iterate and create a card for each -->
+<md-content>
+    <md-card ng-repeat="note in vm.selectedUser.notes | orderBy: '-date'">
+        <md-card-content>
+            <h3>{{note.title}}</h3>
+            <p>{{note.date | date:'MM/dd/yyyy'}}</p>
+        </md-card-content>
+        <!-- Action items, placement controlled by layout -->
+        <md-card-actions layout="row" layout-align="end center">
+            <md-button ng-click="vm.removeNote(note)">Remove</md-button>
+        </md-card-actions>
+    </md-card>
+</md-content>
