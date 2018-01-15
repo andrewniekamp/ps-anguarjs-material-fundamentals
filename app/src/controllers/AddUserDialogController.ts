@@ -1,6 +1,7 @@
 /// <reference path="../_all.ts" />
 
 module ContactManagerApp {
+    
     export class AddUserDialogController {
         static $inject = ['$mdDialog'];
 

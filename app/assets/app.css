@@ -58,6 +58,12 @@ md-sidenav md-list {
     -moz-transform:scale(0.70);
 }
 
+span.name {
+    font-weight: bold;
+    font-size:1.1em;
+    padding-left:5px;
+}
+
 .scrollable-nav-content {
     position: absolute;
     top: 136px;

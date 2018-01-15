@@ -3,7 +3,13 @@
 module ContactManagerApp {
     export class MainController {
         // Avoids issues with minification. In app, we will use a library for this
-        static $inject = ['userService', '$mdSidenav', '$mdToast', '$mdDialog', '$mdMedia']; 
+        static $inject = [
+            'userService',
+            '$mdSidenav',
+            '$mdToast',
+            '$mdDialog',
+            '$mdMedia',
+            '$mdBottomSheet']; 
 
         // Using controllerAs directive (in html tag) to avoid using $scope
 
@@ -13,6 +19,7 @@ module ContactManagerApp {
             private $mdToast: angular.material.IToastService
             private $mdDialog: angular.material.IDialogService
             private $mdMedia: angular.material.IMedia,
+            private $mdBottomSheet: angular.material.IBottomSheetService
         ) { // Has interface! Takes component name (id specified in tag)
             var vm = this;
 
@@ -21,7 +28,7 @@ module ContactManagerApp {
                 .then( (users: User[]) => {
                     vm.users = users;
                     vm.selectedUser = users[0]; // Select first by default
-                    console.log(vm.users);
+                    vm.userService.selectedUser = vm.selectedUser;
                 })
         }
 
@@ -43,6 +50,21 @@ module ContactManagerApp {
                 sideNav.close();
             }
             this.tabIndex = 0;
+        }
+
+        showContactOptions($event) {
+            this.$mdBottomSheet.show({
+                parent: angular.element(document.getElementById('wrapper')),
+                templateUrl: './dist/views/contact-sheet.html',
+                controller: ContactPanelController,
+                controllerAs: 'vm',
+                bindToController: true,
+                targetEvent: $event,
+            }).then( clickedItem => { // We get an action with a name and icon
+                // If click outside of the area, it will cancel and be undefined
+                // If undefined, it won't log to console
+                clickedItem && console.log(clickedItem.name + ' clicked!')
+            })
         }
 
         addUser($event) {
