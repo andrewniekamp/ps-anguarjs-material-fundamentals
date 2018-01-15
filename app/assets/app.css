@@ -38,6 +38,10 @@ md-sidenav md-list {
     padding-top: 5px;
 }
 
+#content md-icon.avatar {
+    margin-top: 10px;
+}
+
 .avatar {
     position: relative;
     width: 128px;
