@@ -30,7 +30,7 @@
         </md-autocomplete>
     </div>
 
-    <md-content>
+    <md-content class="scrollable-nav-content">
         <md-list>
             <!-- Add another pipe to filter by search criteria first, then still order by name! -->
             <md-list-item ng-repeat="user in vm.users | filter: vm.searchText | orderBy:'name'">
@@ -42,4 +42,7 @@
             </md-list-item>
         </md-list>
     </md-content>
+    <md-button class="md-fab md-fab-bottom-right" ng-click="vm.addUser($event)">
+        <ng-md-icon icon="add"></ng-md-icon>
+    </md-button>
 </md-sidenav>
